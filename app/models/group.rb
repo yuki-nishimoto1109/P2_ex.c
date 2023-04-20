@@ -10,4 +10,8 @@ class Group < ApplicationRecord
     (image.attached?) ? image : 'no_image.jpg'
   end
 
+  def user_exist?(user)
+    group_users.where(user_id: user.id).exists?
+  end
+
 end

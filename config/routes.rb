@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   get "home/about"=>"homes#about"
 
-
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create,:destroy]
     resources :book_comments, only: [:create,:destroy]
@@ -23,7 +22,9 @@ Rails.application.routes.draw do
     get "followed" => "relationships#followed", as: "followed"
   end
 
-  resources :groups, only: [:new, :index, :show, :edit, :create, :update]
+  resources :groups, only: [:new, :index, :show, :edit, :create, :update] do
+    resource :group_users, only: [:create, :destroy]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
